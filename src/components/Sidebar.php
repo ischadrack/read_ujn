@@ -104,7 +104,7 @@ $currentModule = basename(dirname($_SERVER['PHP_SELF']));
         <div class="absolute bottom-0 left-0 right-0 p-4 bg-gray-50 dark:bg-gray-700">
             <div class="flex items-center space-x-3">
                 <?php if (!empty($user['photo'])): ?>
-               <img src="<?= BASE_URL ?>/assets/uploads/users/<?= htmlspecialchars($current_user['photo']) ?>" class="w-10 h-10 rounded-full object-cover" alt="Profile">
+               <img src="<?php echo BASE_URL; ?>/assets/uploads/<?= htmlspecialchars($user['photo'], ENT_QUOTES) ?>" class="w-10 h-10 rounded-full object-cover" alt="Profile">
                 <?php else: ?>
                 <div class="w-10 h-10 bg-library-600 rounded-full flex items-center justify-center">
                     <span class="text-white font-semibold text-sm">

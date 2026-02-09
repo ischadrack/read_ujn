@@ -129,7 +129,7 @@ $langues = $langues_stmt->fetchAll(PDO::FETCH_ASSOC);
                         <button id="userDropdown"
                             class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                             <?php if (!empty($user['photo'])): ?>
-                           <img src="<?= BASE_URL ?>/assets/uploads/users/<?= htmlspecialchars($current_user['photo']) ?>"
+                           <img src="<?php echo BASE_URL; ?>/assets/uploads/<?= htmlspecialchars($user['photo'], ENT_QUOTES) ?>"
                                 class="w-8 h-8 rounded-full object-cover border-2 border-library-200 dark:border-library-600"
                                 alt="Profile">
                             <?php else: ?>

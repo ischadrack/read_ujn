@@ -44,7 +44,7 @@ function renderSidebarLink($user, $module, $title, $icon, $href) {
                 border-b border-gray-200 dark:border-gray-700">
         <div class="flex items-center space-x-3">
             <span class="font-bold text-lg text-library-800 dark:text-library-200 hidden xl:block">
-                <img class="w-20" src="<?= BASE_URL ?>/assets/logo/logoujn.png" alt="Logo UN JOUR NOUVEAU">
+                <img class="w-20" src="<?php echo BASE_URL; ?>/assets/logo/logoujn.png" alt="Logo UN JOUR NOUVEAU">
             </span>
         </div>
 
@@ -124,7 +124,7 @@ function renderSidebarLink($user, $module, $title, $icon, $href) {
 
         <div class="flex items-center space-x-3">
             <?php if (!empty($current_user['photo'])): ?>
-            <img src="<?= BASE_URL ?>/assets/uploads/users/<?= htmlspecialchars($current_user['photo']) ?>"
+            <img src="<?php echo BASE_URL; ?><?php echo BASE_URL; ?>/assets/uploads/<?= htmlspecialchars($user['photo'], ENT_QUOTES) ?>"
                 class="w-9 h-9 rounded-full object-cover border-2 border-library-200 dark:border-library-600"
                 alt="Profil">
             <?php else: ?>

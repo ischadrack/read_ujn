@@ -150,7 +150,7 @@ if ($_POST && isset($_POST['password_change'])) {
                 <div class="relative">
                     <button id="userDropdown" class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
                         <?php if (!empty($user['photo'])): ?>
-                            <img src="assets/uploads/<?php echo htmlspecialchars($user['photo']); ?>" class="w-8 h-8 rounded-full object-cover border-2 border-library-200 dark:border-library-600" alt="Profile">
+                            <img src="<?php echo BASE_URL; ?>/assets/uploads/<?= htmlspecialchars($user['photo'], ENT_QUOTES) ?>" class="w-8 h-8 rounded-full object-cover border-2 border-library-200 dark:border-library-600" alt="Profile">
                         <?php else: ?>
                             <div class="w-8 h-8 bg-gradient-to-br from-library-500 to-purple-600 rounded-full flex items-center justify-center border-2 border-library-200 dark:border-library-600">
                                 <span class="text-white text-sm font-semibold">
@@ -219,7 +219,7 @@ if ($_POST && isset($_POST['password_change'])) {
                     <div class="text-center">
                         <div class="relative inline-block">
                             <?php if (!empty($user['photo'])): ?>
-                                <img id="profilePreview" src="assets/uploads/<?php echo htmlspecialchars($user['photo']); ?>" class="w-24 h-24 rounded-full object-cover border-4 border-library-200 dark:border-library-600" alt="Profile">
+                                <img id="profilePreview" src="<?php echo BASE_URL; ?>/assets/uploads/<?= htmlspecialchars($user['photo'], ENT_QUOTES) ?>" class="w-24 h-24 rounded-full object-cover border-4 border-library-200 dark:border-library-600" alt="Profile">
                             <?php else: ?>
                                 <div id="profilePreview" class="w-24 h-24 bg-gradient-to-br from-library-500 to-purple-600 rounded-full flex items-center justify-center border-4 border-library-200 dark:border-library-600">
                                     <span class="text-white text-2xl font-bold">

@@ -44,7 +44,7 @@ function renderSidebarLink($user, $module, $title, $icon, $href) {
                 border-b border-gray-200 dark:border-gray-700">
         <div class="flex items-center space-x-3">
             <span class="font-bold text-lg text-library-800 dark:text-library-200 hidden xl:block">
-                <img class="w-20" src="<?= BASE_URL ?>/assets/logo/logoujn.png" alt="Logo UN JOUR NOUVEAU">
+                <img class="w-20" src="<?php echo BASE_URL; ?>/assets/logo/logoujn.png" alt="Logo UN JOUR NOUVEAU">
             </span>
         </div>
 
@@ -116,32 +116,27 @@ function renderSidebarLink($user, $module, $title, $icon, $href) {
         </div>
     </nav>
 
-    <!-- PROFIL UTILISATEUR -->
-    <div class="absolute bottom-0 left-0 right-0 p-4
-                border-t border-gray-200 dark:border-gray-700
-                bg-gradient-to-br from-library-50 to-blue-100
-                dark:from-gray-800 dark:to-gray-900">
-
+   <!-- Profil utilisateur -->
+    <div
+        class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 dark:border-gray-700 bg-gradient-to-br from-indigo-50 to-blue-100 dark:from-gray-800 dark:to-gray-900">
         <div class="flex items-center space-x-3">
             <?php if (!empty($current_user['photo'])): ?>
-            <img src="<?= BASE_URL ?>/assets/uploads/users/<?= htmlspecialchars($current_user['photo']) ?>"
-                class="w-9 h-9 rounded-full object-cover border-2 border-library-200 dark:border-library-600"
-                alt="Profil">
+            <img src="<?php echo BASE_URL; ?>/assets/uploads/<?= htmlspecialchars($user['photo'], ENT_QUOTES) ?>"
+                class="w-8 h-8 rounded-full object-cover border-2 border-gray-200 dark:border-gray-600" alt="Profile">
             <?php else: ?>
-            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-library-500 to-purple-600
-                            flex items-center justify-center border-2 border-library-200">
-                <span class="text-white text-xs font-semibold">
-                    <?= strtoupper(substr($current_user['first_name'],0,1) . substr($current_user['last_name'],0,1)) ?>
+            <div
+                class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center border-2 border-gray-200 dark:border-gray-600">
+                <span class="text-white text-sm font-semibold">
+                    <?php echo strtoupper(substr($current_user['first_name'],0,1).substr($current_user['last_name'],0,1)); ?>
                 </span>
             </div>
             <?php endif; ?>
-
             <div class="flex-1 min-w-0">
                 <p class="text-sm font-medium text-gray-900 dark:text-white truncate">
-                    <?= htmlspecialchars($current_user['first_name'].' '.$current_user['last_name']) ?>
+                    <?php echo htmlspecialchars($current_user['first_name'] . ' ' . $current_user['last_name']); ?>
                 </p>
                 <p class="text-xs text-gray-500 dark:text-gray-400 truncate">
-                    <?= ucfirst($current_user['role']) ?>
+                    <?php echo ucfirst($current_user['role']); ?>
                 </p>
             </div>
         </div>
