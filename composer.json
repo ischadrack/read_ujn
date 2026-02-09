@@ -1,0 +1,17 @@
+{
+    "name": "library-management/system",
+    "description": "Library Management System for UN JOUR NOUVEAU",
+    "type": "project",
+    "require": {
+        "php": ">=7.4",
+        "tecnickcom/tcpdf": "^6.6",
+        "phpoffice/phpspreadsheet": "^1.29"
+    },
+    "autoload": {
+        "psr-4": {
+            "LibraryManagement\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

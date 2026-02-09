@@ -1,0 +1,749 @@
+/**
+ * Styles d'impression pour les documents PDF - Bibliothèque UN JOUR NOUVEAU
+ * Optimisé pour une impression professionnelle sans dépendances externes
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fredoka:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --primary: #3b82f6;
+    --primary-dark: #1e40af;
+    --primary-light: #dbeafe;
+    --secondary: #10b981;
+    --accent: #f59e0b;
+    --danger: #ef4444;
+    --warning: #f97316;
+    --success: #22c55e;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-400: #9ca3af;
+    --gray-500: #6b7280;
+    --gray-600: #4b5563;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --gray-900: #111827;
+}
+
+/* Styles généraux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--gray-800);
+    background: white;
+}
+
+/* Styles d'impression */
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    @page {
+        size: A4;
+        margin: 15mm;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        background: white !important;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+    
+    .page-break {
+        page-break-before: always;
+        break-before: page;
+    }
+    
+    .avoid-break {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    /* Optimiser les couleurs pour l'impression */
+    .card-header {
+        background: var(--primary) !important;
+        -webkit-print-color-adjust: exact;
+    }
+    
+    .student-avatar {
+        background: var(--primary) !important;
+        -webkit-print-color-adjust: exact;
+    }
+    
+    .student-number {
+        background: var(--primary) !important;
+        -webkit-print-color-adjust: exact;
+    }
+    
+    .data-table th {
+        background: var(--primary) !important;
+        color: white !important;
+        -webkit-print-color-adjust: exact;
+    }
+    
+    .status-badge {
+        -webkit-print-color-adjust: exact !important;
+    }
+    
+    /* Éviter les coupures de page dans les éléments critiques */
+    .subscription-card,
+    .info-section,
+    .student-section {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    .data-table tr {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    /* Optimisations de taille pour l'impression */
+    .subscription-card {
+        margin-bottom: 20mm;
+    }
+    
+    .card-body {
+        padding: 8mm;
+    }
+    
+    .student-section {
+        padding: 6mm;
+    }
+    
+    .info-grid {
+        gap: 4mm;
+    }
+    
+    .info-section {
+        padding: 4mm;
+    }
+}
+
+/* Styles écran pour prévisualisation */
+@media screen {
+    body {
+        padding: 20px;
+        background: #f5f5f5;
+    }
+    
+    .print-controls {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        display: flex;
+        gap: 10px;
+    }
+    
+    .print-button {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 12px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: inherit;
+    }
+    
+    .print-button:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+    }
+    
+    .print-button.secondary {
+        background: var(--gray-600);
+    }
+    
+    .print-button.secondary:hover {
+        background: var(--gray-700);
+    }
+}
+
+/* Styles pour les cartes d'abonnement */
+.subscription-card {
+    max-width: 210mm;
+    margin: 0 auto 40px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+.card-header {
+    background: linear-gradient(135deg, var(--primary) 0%, #6366f1 50%, #8b5cf6 100%);
+    color: white;
+    padding: 40px 30px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { 
+        transform: translateX(-100%) translateY(-100%) rotate(0deg); 
+    }
+    50% { 
+        transform: translateX(0%) translateY(0%) rotate(180deg); 
+    }
+}
+
+.school-logo {
+    width: 90px;
+    height: 90px;
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    position: relative;
+    z-index: 1;
+    font-size: 42px;
+    border: 4px solid rgba(255,255,255,0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.school-name {
+    font-family: "Fredoka", cursive;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    letter-spacing: 1px;
+}
+
+.card-subtitle {
+    font-size: 18px;
+    opacity: 0.95;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.card-body {
+    padding: 45px;
+    background: white;
+}
+
+.student-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    padding: 35px;
+    background: linear-gradient(135deg, var(--gray-50) 0%, #f0f9ff 100%);
+    border-radius: 20px;
+    border: 2px solid var(--gray-100);
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.student-avatar {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, var(--primary) 0%, #6366f1 50%, #8b5cf6 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 35px;
+    color: white;
+    font-size: 36px;
+    font-weight: 800;
+    border: 6px solid white;
+    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+    position: relative;
+}
+
+.student-avatar::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    background: linear-gradient(135deg, var(--primary), #6366f1, #8b5cf6);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.student-details {
+    flex: 1;
+}
+
+.student-name {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--gray-900);
+    margin: 0 0 15px 0;
+    font-family: "Fredoka", cursive;
+    line-height: 1.2;
+}
+
+.student-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.student-number {
+    background: linear-gradient(135deg, var(--primary), #6366f1);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+
+.status-badge {
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.status-actif {
+    background: #d1fae5;
+    color: #065f46;
+    border: 2px solid #10b981;
+}
+
+.status-suspendu {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 2px solid #ef4444;
+}
+
+.status-expire {
+    background: #fef3c7;
+    color: #92400e;
+    border: 2px solid #f59e0b;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.info-section {
+    background: white;
+    border: 2px solid var(--gray-100);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.info-section:hover {
+    border-color: var(--primary-light);
+    box-shadow: 0 12px 35px rgba(59, 130, 246, 0.1);
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 3px solid var(--primary-light);
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-title::before {
+    content: "●";
+    font-size: 20px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.info-label {
+    font-size: 14px;
+    color: var(--gray-600);
+    font-weight: 500;
+    flex: 1;
+}
+
+.info-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray-900);
+    text-align: right;
+    flex: 1;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.warning-box {
+    background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%);
+    border: 2px solid var(--warning);
+    color: #92400e;
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    font-weight: 700;
+    margin: 25px 0;
+    font-size: 16px;
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.2);
+}
+
+.notes-section {
+    background: var(--gray-50);
+    border: 2px solid var(--gray-200);
+    border-radius: 16px;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.card-footer {
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+    padding: 30px;
+    text-align: center;
+    color: var(--gray-600);
+    border-top: 2px solid var(--gray-200);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.card-footer strong {
+    color: var(--gray-800);
+    font-size: 16px;
+}
+
+/* Styles pour les listes */
+.list-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.list-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px;
+    background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+}
+
+.list-title {
+    font-family: "Fredoka", cursive;
+    font-size: 36px;
+    margin: 0 0 15px 0;
+    font-weight: 700;
+}
+
+.list-subtitle {
+    font-size: 22px;
+    margin: 0 0 20px 0;
+    opacity: 0.95;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin: 30px 0 40px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 2px solid var(--gray-100);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    border-color: var(--primary-light);
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-family: "Fredoka", cursive;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--gray-600);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.filters-applied {
+    background: var(--gray-50);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border: 2px solid var(--gray-200);
+}
+
+.filters-applied h4 {
+    margin: 0 0 15px 0;
+    color: var(--gray-700);
+    font-size: 16px;
+}
+
+.filter-tag {
+    background: var(--primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.data-table th {
+    background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
+    color: white;
+    padding: 18px 12px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.data-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: 12px;
+    color: var(--gray-800);
+    vertical-align: top;
+}
+
+.data-table tr:hover {
+    background: var(--gray-50);
+}
+
+.data-table tr:last-child td {
+    border-bottom: none;
+}
+
+.student-name-cell {
+    font-weight: 700;
+    color: var(--gray-900);
+    font-size: 13px;
+}
+
+.status-cell {
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .info-grid, 
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .student-section {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .student-avatar {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+    
+    .student-meta {
+        justify-content: center;
+    }
+    
+    .data-table {
+        font-size: 10px;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 8px 6px;
+    }
+    
+    .card-body {
+        padding: 20px;
+    }
+    
+    .student-section {
+        padding: 20px;
+    }
+    
+    .info-section {
+        padding: 15px;
+    }
+}
+
+/* Styles spéciaux pour l'impression couleur */
+@media print and (color) {
+    .card-header,
+    .student-avatar,
+    .student-number,
+    .status-badge,
+    .data-table th {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+}
+
+/* Fallback pour impression noir et blanc */
+@media print and (monochrome) {
+    .card-header {
+        background: #333 !important;
+        color: white !important;
+    }
+    
+    .student-avatar {
+        background: #333 !important;
+        color: white !important;
+    }
+    
+    .student-number {
+        background: #333 !important;
+        color: white !important;
+    }
+    
+    .status-badge {
+        background: #f0f0f0 !important;
+        color: #333 !important;
+        border: 2px solid #333 !important;
+    }
+    
+    .data-table th {
+        background: #333 !important;
+        color: white !important;
+    }
+}
+
+/* Animations pour l'écran uniquement */
+@media screen {
+    .subscription-card {
+        animation: slideIn 0.6s ease-out;
+    }
+    
+    .info-section {
+        animation: fadeIn 0.8s ease-out;
+    }
+    
+    .stat-card {
+        animation: scaleIn 0.5s ease-out;
+    }
+    
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+}
